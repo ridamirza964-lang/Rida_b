@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirza Rida Tasmim | ICE Student, BUP</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F7F8FA;
+    --panel:#FFFFFF;
+    --line:#DFE3E8;
+    --ink:#1A2233;
+    --ink-muted:#5E6B7D;
+    --red:#1E3A5F;
+    --red-dim:#14283F;
+    --teal:#2C7873;
+    --amber:#C98A2B;
+    --plum:#6B4C93;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    background-color:var(--paper);
+    color:var(--ink);
+    font-family:'Times New Roman', Times, serif;
+    line-height:1.65;
+  }
+
+  h1,h2,h3,h4,.brand{ font-family:'Times New Roman', Times, serif; font-weight:600; }
+  .mono{ font-family:'Times New Roman', Times, serif; }
+  a{ text-decoration:none; }
+  ::selection{ background:var(--red); color:#FFF; }
+  html{ scroll-behavior:smooth; }
+
+  .container-narrow{ max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+  .section{ padding:5.5rem 0; border-bottom:1px solid var(--line); scroll-margin-top:88px; position:relative; }
+
+  .dim-label{
+    display:flex; align-items:center; gap:.6rem;
+    color:var(--red); font-size:.8rem; margin-bottom:.5rem;
+  }
+  .dim-label::before{ content:""; width:20px; height:1px; background:var(--red); }
+  .section-title{ font-size:2.1rem; font-weight:600; margin-bottom:2.5rem; max-width:32rem; color:var(--ink); }
+
+  .frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--panel);
+  }
+  .frame::before, .frame::after{
+    content:""; position:absolute; width:14px; height:14px;
+    border-color:var(--red); border-style:solid;
+  }
+  .frame::before{ top:-1px; left:-1px; border-width:2px 0 0 2px; }
+  .frame::after{ bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+
+  .navbar-custom{
+    background:rgba(247,248,250,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-custom .navbar-brand{ color:var(--ink); font-weight:600; font-size:1.05rem; font-family:'Times New Roman', Times, serif; }
+  .navbar-custom .navbar-brand span{ color:var(--red); }
+  .navbar-custom .nav-link{
+    color:var(--ink-muted); font-size:.92rem; margin:0 .55rem;
+    position:relative; padding-bottom:4px !important;
+  }
+  .navbar-custom .nav-link::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--red); transition:width .18s ease;
+  }
+  .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active{ color:var(--ink); }
+  .navbar-custom .nav-link:hover::after, .navbar-custom .nav-link.active::after{ width:100%; }
+  .navbar-toggler{ border-color:var(--line) !important; }
+  .navbar-toggler-icon{ filter:invert(1); }
+
+  .btn-copper{
+    background:var(--red); color:#FFF; font-weight:600; border:none;
+    padding:.55rem 1.3rem; border-radius:2px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-copper:hover{ color:#FFF; transform:translateY(-2px); box-shadow:0 10px 22px -10px rgba(30,58,95,.35); }
+  .btn-outline-paper{
+    border:1px solid var(--line); color:var(--ink);
+    padding:.55rem 1.3rem; border-radius:2px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-outline-paper:hover{ border-color:var(--red); color:var(--ink); background:rgba(30,58,95,.06); }
+
+  .hero{ padding:7.5rem 0 4.5rem; border-bottom:1px solid var(--line); }
+  .hero-tag{ color:var(--red); font-size:.85rem; margin-bottom:1rem; }
+  .hero h1{ font-size:3.2rem; font-weight:700; line-height:1.12; margin-bottom:1rem; color:var(--ink); }
+  .hero h1 em{ font-style:italic; color:var(--red); }
+  .hero-role{ font-size:1.1rem; color:var(--ink-muted); max-width:36rem; }
+  .hero-role .type-target{ color:var(--ink); border-right:2px solid var(--red); padding-right:3px; }
+  .hero-desc{ color:var(--ink-muted); max-width:36rem; margin-top:-.8rem; margin-bottom:2rem; }
+
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:0;
+    margin-top:2.6rem; max-width:38rem;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .hero-meta div{
+    flex:1 1 45%; font-size:.85rem; padding:.9rem 1.1rem;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-meta .label{ color:var(--ink-muted); display:block; margin-bottom:.2rem; font-size:.78rem; }
+  .hero-meta .value{ color:var(--ink); font-weight:500; }
+
+  .id-card{
+    max-width:270px; margin-left:auto;
+    border:1px solid var(--line);
+    background:var(--panel);
+  }
+  .id-card .id-photo{
+    aspect-ratio:1/1; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-muted); font-size:.8rem; text-align:center; padding:1rem;
+    overflow:hidden;
+  }
+  .id-card .id-strip{ padding:.9rem 1rem; }
+  .id-card .id-strip div{ font-size:.75rem; color:var(--ink-muted); margin-bottom:.15rem; }
+  .id-card .id-strip strong{ color:var(--ink); font-size:.9rem; display:block; margin-bottom:.6rem; }
+
+  .about-lead{ font-size:1.1rem; color:var(--ink); max-width:38rem; font-family:'Times New Roman', Times, serif; }
+  .about-lead + p{ color:var(--ink-muted); max-width:38rem; }
+  .spec-sheet .spec-row{
+    display:flex; justify-content:space-between; padding:.85rem 1.2rem;
+    border-bottom:1px solid var(--line); font-size:.9rem;
+    border-left:3px solid transparent;
+  }
+  .spec-sheet .spec-row:nth-child(4n+1){ border-left-color:var(--red); background:rgba(30,58,95,.05); }
+  .spec-sheet .spec-row:nth-child(4n+2){ border-left-color:var(--teal); background:rgba(44,120,115,.05); }
+  .spec-sheet .spec-row:nth-child(4n+3){ border-left-color:var(--amber); background:rgba(201,138,43,.05); }
+  .spec-sheet .spec-row:nth-child(4n+4){ border-left-color:var(--plum); background:rgba(107,76,147,.05); }
+  .spec-sheet .spec-row:last-child{ border-bottom:none; }
+  .spec-sheet .spec-key{ color:var(--ink-muted); }
+  .spec-sheet .spec-val{ color:var(--ink); font-weight:500; text-align:right; }
+
+  .dim-timeline{ position:relative; padding-left:2.2rem; max-width:44rem; }
+  .dim-timeline::before{
+    content:""; position:absolute; left:5px; top:8px; bottom:8px; width:1px;
+    background-image:linear-gradient(var(--line) 60%, transparent 40%);
+    background-size:1px 8px;
+  }
+  .dim-item{ position:relative; padding-bottom:2.4rem; }
+  .dim-item:last-child{ padding-bottom:0; }
+  .dim-item::before{
+    content:""; position:absolute; left:-2.2rem; top:.25rem;
+    width:10px; height:10px; background:var(--paper);
+    border:2px solid var(--red); transform:rotate(45deg);
+  }
+  .dim-year{ color:var(--red); font-size:.85rem; margin-bottom:.3rem; }
+  .dim-item h4{ font-size:1.15rem; margin-bottom:.2rem; color:var(--ink); }
+  .dim-item p{ color:var(--ink-muted); font-size:.92rem; margin-bottom:0; }
+
+  .skill-group{ margin-bottom:2.1rem; }
+  .skill-group h4{ font-size:.92rem; color:var(--ink-muted); font-weight:500; margin-bottom:.9rem; font-family:'Times New Roman', Times, serif; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:.5rem; }
+  .chip{
+    border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    padding:.4rem .8rem; border-radius:2px; font-size:.85rem;
+    border-left:3px solid var(--red);
+  }
+  .chip-row .chip:nth-child(4n+1){ border-left-color:var(--red); }
+  .chip-row .chip:nth-child(4n+2){ border-left-color:var(--teal); }
+  .chip-row .chip:nth-child(4n+3){ border-left-color:var(--amber); }
+  .chip-row .chip:nth-child(4n+4){ border-left-color:var(--plum); }
+
+  .project-card{ padding:1.8rem; height:100%; display:flex; flex-direction:column; transition:border-color .15s ease; }
+  .project-card:hover{ border-color:var(--red); }
+  .project-card .kicker{ color:var(--red); font-size:.75rem; margin-bottom:.6rem; }
+  .project-card h4{ font-size:1.18rem; margin-bottom:.6rem; color:var(--ink); }
+  .project-card p{ color:var(--ink-muted); font-size:.92rem; flex-grow:1; }
+  .project-stack{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.8rem 0 0; }
+  .project-stack span{ font-size:.72rem; color:var(--ink-muted); border:1px solid var(--line); padding:.15rem .55rem; border-radius:2px; }
+
+  .ach-item{ display:flex; gap:1rem; padding:1.2rem 0; border-bottom:1px solid var(--line); }
+  .ach-item:last-child{ border-bottom:none; }
+  .ach-icon{
+    width:38px; height:38px; flex-shrink:0; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--red);
+    transform:rotate(45deg); background:var(--panel);
+  }
+  .ach-icon i{ transform:rotate(-45deg); }
+  .ach-item h5{ font-size:1.02rem; margin-bottom:.15rem; color:var(--ink); font-family:'Times New Roman', Times, serif; }
+  .ach-item p{ color:var(--ink-muted); font-size:.88rem; margin-bottom:0; }
+
+  .contact-panel{ padding:2.2rem; }
+  .form-control{ background:var(--paper); border:1px solid var(--line); color:var(--ink); border-radius:2px; padding:.7rem .9rem; }
+  .form-control::placeholder{ color:#98A0A8; }
+  .form-control:focus{ background:#fff; color:var(--ink); border-color:var(--red); box-shadow:0 0 0 3px rgba(30,58,95,.12); }
+  .form-label{ color:var(--ink-muted); font-size:.85rem; }
+  .contact-info a{ color:var(--ink); }
+  .contact-info a:hover{ color:var(--red); }
+  .social-row a{
+    width:40px; height:40px; border:1px solid var(--line);
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--ink); margin-right:.6rem; transition:border-color .15s ease, color .15s ease;
+    background:var(--panel);
+  }
+  .social-row a:hover{ border-color:var(--red); color:var(--red); }
+
+  footer{ padding:2rem 0; color:var(--ink-muted); font-size:.85rem; border-top:1px solid var(--line); }
+
+  /* ---------- section tints ---------- */
+  .tint-navy{ background:rgba(30,58,95,.035); }
+  .tint-teal{ background:rgba(44,120,115,.035); }
+  .tint-amber{ background:rgba(201,138,43,.035); }
+  .tint-plum{ background:rgba(107,76,147,.035); }
+
+  /* ---------- certificates ---------- */
+  .cert-card{ overflow:hidden; }
+  .cert-card .cert-img{
+    aspect-ratio:4/3; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    background:var(--paper); color:var(--ink-muted); font-size:.8rem; text-align:center; padding:1rem;
+  }
+  .cert-card .cert-img img{ width:100%; height:100%; object-fit:cover; }
+  .cert-card .cert-body{ padding:1.1rem 1.3rem; }
+  .cert-card h5{ font-size:1rem; margin-bottom:.2rem; color:var(--ink); }
+  .cert-card p{ color:var(--ink-muted); font-size:.85rem; margin-bottom:0; }
+
+  @media (max-width: 767px){
+    .hero h1{ font-size:2.3rem; }
+    .section{ padding:3.5rem 0; }
+    .id-card{ margin:0 auto; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-role .type-target{ border-right:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top py-3">
+  <div class="container-narrow d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="#home">Mirza Rida Tasmim<span>.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="btn btn-copper" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="container-narrow">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="hero-tag mono">DEPT. OF INFORMATION &amp; COMMUNICATION ENGINEERING — BUP</div>
+        <h1>Hi, I'm <em>Rida Tasmim</em>.</h1>
+        <p class="hero-role"><span class="type-target" id="typeTarget">3rd Year ICE Student</span></p>
+        <p class="hero-desc">
+          Currently in my 3rd year of Information &amp; Communication Engineering at
+          Bangladesh University of Professionals — building projects across
+          object-oriented programming, databases, and signal processing, and
+          active with IEEE WIE and event organizing on campus.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#projects" class="btn btn-copper">View Projects</a>
+          <a href="aspect/img/Cv.jpeg" download class="btn btn-outline-paper"><i class="bi bi-download me-1"></i> Download CV</a>
+        </div>
+
+        <div class="hero-meta mono">
+          <div><span class="label">University</span><span class="value">Bangladesh University of Professionals</span></div>
+          <div><span class="label">Department</span><span class="value">Information &amp; Communication Engineering</span></div>
+          <div><span class="label">Year</span><span class="value">3rd Year</span></div>
+          <div><span class="label">Location</span><span class="value">Dhaka, Bangladesh</span></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <div class="id-card">
+          <div class="id-photo">
+            <img src="aspect/img/pic.jpeg" alt="RIDA" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="id-strip mono">
+            <strong>Mirza Rida Tasmim</strong>
+            <div>ID: 2454901016</div>
+            <div>Dept: ICE, BUP</div>
+            <div>Year: 3rd Year</div>
+            <div>Semester: 6th Sem</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section tint-navy">
+  <div class="container-narrow">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <div class="dim-label mono">01 / ABOUT</div>
+        <h2 class="section-title">A brief introduction</h2>
+        <p class="about-lead">
+          I'm a 3rd year undergraduate student of Information and Communication
+          Engineering at Bangladesh University of Professionals, working at the
+          point where programming, databases, and signal processing meet.
+        </p>
+        <p>
+          Through my coursework I've built systems spanning object-oriented
+          design, relational databases, and digital signal processing —
+          including a grocery management system, a resource management
+          platform, an FIR-based signal filter, and a process-synchronization
+          calculator. Outside academics, I'm a member of IEEE WIE, have
+          volunteered at my department's festival, and have experience
+          hosting school programs — something I enjoy alongside the
+          technical side of engineering.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="frame spec-sheet mono">
+          <div class="spec-row"><span class="spec-key">Full Name</span><span class="spec-val">Mirza Rida Tasmim</span></div>
+          <div class="spec-row"><span class="spec-key">Student ID</span><span class="spec-val">24549010106</span></div>
+          <div class="spec-row"><span class="spec-key">Department</span><span class="spec-val">ICE, BUP</span></div>
+          <div class="spec-row"><span class="spec-key">Year</span><span class="spec-val">3rd Year</span></div>
+          <div class="spec-row"><span class="spec-key">Email</span><span class="spec-val">ridamirza964@gmail.com</span></div>
+          <div class="spec-row"><span class="spec-key">Phone</span><span class="spec-val">+880 1521744079</span></div>
+          <div class="spec-row"><span class="spec-key">Based in</span><span class="spec-val">Dhaka, Bangladesh</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="section tint-teal">
+  <div class="container-narrow">
+    <div class="dim-label mono">02 / EDUCATION</div>
+    <h2 class="section-title">Academic background</h2>
+
+    <div class="dim-timeline">
+      <div class="dim-item">
+        <div class="dim-year mono">2026 — Present</div>
+        <h4>B.Sc. in Information &amp; Communication Engineering</h4>
+        <p>Bangladesh University of Professionals (BUP), Dhaka — currently in 3rd year, CGPA: 3.72 / 4.00 (running)</p>
+      </div>
+      <div class="dim-item">
+        <div class="dim-year mono">2022</div>
+        <h4>Higher Secondary Certificate (HSC), Science</h4>
+        <p>BCIC College — GPA: 5.00 / 5.00</p>
+      </div>
+      <div class="dim-item">
+        <div class="dim-year mono">2020</div>
+        <h4>Secondary School Certificate (SSC), Science</h4>
+        <p>Kallyanpur Girl's School And College — GPA: 5.00 / 5.00</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section tint-amber">
+  <div class="container-narrow">
+    <div class="dim-label mono">03 / SKILLS</div>
+    <h2 class="section-title">Technical toolkit</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="skill-group">
+          <h4>Programming Languages</h4>
+          <div class="chip-row">
+            <span class="chip">C</span>
+            <span class="chip">C++</span>
+            <span class="chip">Java</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools &amp; Environments</h4>
+          <div class="chip-row">
+            <span class="chip">MATLAB</span>
+            <span class="chip">MySQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="skill-group">
+          <h4>Web Development</h4>
+          <div class="chip-row">
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">Bootstrap</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Core Coursework</h4>
+          <div class="chip-row">
+            <span class="chip">Object-Oriented Design &amp; Programming</span>
+            <span class="chip">DBMS</span>
+            <span class="chip">Digital Signal Processing</span>
+            <span class="chip">Operating Systems</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section tint-plum">
+  <div class="container-narrow">
+    <div class="dim-label mono">04 / PROJECTS</div>
+    <h2 class="section-title">Things I've built</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">OODP COURSE PROJECT</div>
+          <h4>Online Grocery Management System</h4>
+          <p>A Java-based system to manage grocery inventory, orders, and customers,
+             built to apply core object-oriented design principles — encapsulation,
+             inheritance, and polymorphism — taught in the OODP course.</p>
+          <div class="project-stack"><span>Java</span><span>OOP</span></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">DBMS COURSE PROJECT</div>
+          <h4>Sustainable Resource Management System</h4>
+          <p>A resource management platform with a Java backend, MySQL database,
+             and an HTML/CSS front end, focused on relational schema design
+             and CRUD operations for tracking sustainable resource usage.</p>
+          <div class="project-stack"><span>Java</span><span>MySQL</span><span>HTML</span><span>CSS</span></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">DSP COURSE PROJECT</div>
+          <h4>Noisy Signal Filtering using FIR</h4>
+          <p>Designed an FIR (Finite Impulse Response) filter in MATLAB to remove
+             noise from a signal, comparing the filtered output against the
+             original in both time and frequency domain.</p>
+          <div class="project-stack"><span>MATLAB</span><span>FIR Filter</span><span>DSP</span></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">OPERATING SYSTEMS PROJECT</div>
+          <h4>Process Synchronization Calculator</h4>
+          <p>An interactive tool that demonstrates and solves the classical
+             process synchronization problems, built with a Python backend
+             and an HTML/CSS interface for visualizing each scenario.</p>
+          <div class="project-stack"><span>Python</span><span>HTML</span><span>CSS</span></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">IN PROGRESS</div>
+          <h4>EduTrack — Learning Management System</h4>
+          <p>A learning management system currently in development, with a Python
+             Flask backend and an HTML/CSS front end, aimed at helping students
+             and instructors track courses, materials, and progress in one place.</p>
+          <div class="project-stack"><span>Python</span><span>Flask</span><span>HTML</span><span>CSS</span></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="frame project-card">
+          <div class="kicker mono">IN PROGRESS</div>
+          <h4>BUP-Mediconnect</h4>
+          <p>An ongoing project connecting patients with healthcare services on
+             campus, built with a Node.js backend, a MySQL database, and an
+             HTML/CSS front end.</p>
+          <div class="project-stack"><span>Node.js</span><span>MySQL</span><span>HTML</span><span>CSS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" class="section tint-navy">
+  <div class="container-narrow">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <div class="dim-label mono">05 / INVOLVEMENT</div>
+        <h2 class="section-title">Activities &amp; leadership</h2>
+
+        <div class="ach-item">
+          <div class="ach-icon"><i class="bi bi-people"></i></div>
+          <div>
+            <h5>Member, IEEE WIE</h5>
+            <p>Active member of IEEE Women in Engineering, taking part in its events and initiatives.</p>
+          </div>
+        </div>
+        <div class="ach-item">
+          <div class="ach-icon"><i class="bi bi-flag"></i></div>
+          <div>
+            <h5>Volunteer, Departmental Fest</h5>
+            <p>Volunteered in organizing and running the most recent department festival.</p>
+          </div>
+        </div>
+        <div class="ach-item">
+          <div class="ach-icon"><i class="bi bi-mic"></i></div>
+          <div>
+            <h5>Program Host</h5>
+            <p>Hosted a school program, gaining experience in public speaking and event anchoring.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="dim-label mono">06 / SUMMARY</div>
+        <h2 class="section-title">At a glance</h2>
+        <div class="frame spec-sheet mono">
+          <div class="spec-row"><span class="spec-key">Projects Completed</span><span class="spec-val">4</span></div>
+          <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">C, C++, Java, Python</span></div>
+          <div class="spec-row"><span class="spec-key">Current Year</span><span class="spec-val">3rd Year</span></div>
+          <div class="spec-row"><span class="spec-key">Society</span><span class="spec-val">IEEE WIE</span></div>
+          <div class="spec-row"><span class="spec-key">Other Experience</span><span class="spec-val">Program Hosting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates" class="section tint-teal">
+  <div class="container-narrow">
+    <div class="dim-label mono">07 / CERTIFICATES</div>
+    <h2 class="section-title">Participation &amp; certificates</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="frame cert-card">
+          <div class="cert-img">
+            <img src="aspect/img/IEEE cirtificate.jpeg" alt="Certificate 1" onerror="this.parentElement.innerHTML='Certificate Image<br>Here'">
+          </div>
+          <div class="cert-body">
+            <h5>IT Olympiad</h5>
+            <p>IEEE BranchFest — 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="frame cert-card">
+          <div class="cert-img">
+            <img src="aspect/img/English Olypiad.jpeg" alt="Certificate 2" onerror="this.parentElement.innerHTML='Certificate Image<br>Here'">
+          </div>
+          <div class="cert-body">
+            <h5>English Olypiad</h5>
+            <p>English Olypiad(EO) and WOC-2018 </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="frame cert-card">
+          <div class="cert-img">
+            <img src="aspect/img/Science_Olypiad.jpeg" alt="Certificate 3" onerror="this.parentElement.innerHTML='Certificate Image<br>Here'">
+          </div>
+          <div class="cert-body">
+            <h5>Science_Olypiad</h5>
+            <p>BSB -Cambrian Education Group--2019</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section tint-amber" style="border-bottom:none;">
+  <div class="container-narrow">
+    <div class="dim-label mono">08 / CONTACT</div>
+    <h2 class="section-title">Let's get in touch</h2>
+
+    <div class="row g-5">
+      <div class="col-lg-5 contact-info">
+        <p style="color:var(--ink-muted); max-width:26rem;">
+          Feel free to reach out for collaboration, internship opportunities,
+          or to talk about any of the projects above.
+        </p>
+        <div class="mb-3"><i class="bi bi-envelope me-2" style="color:var(--red);"></i><a href="mailto:ridamirza964@gmail.com">ridamirza964@gmail.com</a></div>
+        <div class="mb-3"><i class="bi bi-telephone me-2" style="color:var(--red);"></i><a href="tel:+8801521744079">+880 1521744079</a></div>
+        <div class="mb-4"><i class="bi bi-geo-alt me-2" style="color:var(--red);"></i><span>Dhaka, Bangladesh</span></div>
+        <div class="social-row">
+          <a href="https://github.com/ridamirza964-lang/" target="_blank"><i class="bi bi-github"></i></a>
+        
+          <a href="https://www.facebook.com/share/195YfVgeR9/" target="_blank"><i class="bi bi-facebook"></i></a>
+          
+          <a href="mailto:ridamirza964@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+          
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="frame contact-panel">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Your name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="you@example.com">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Subject</label>
+                <input type="text" class="form-control" placeholder="What's this about?">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="4" placeholder="Write your message..."></textarea>
+              </div>
+              <div class="col-12">
+                <button type="button" class="btn btn-copper w-100 w-md-auto">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container-narrow d-flex flex-wrap justify-content-between align-items-center">
+    <span>&copy; 2026 Mirza Rida Tasmim — ICE, Bangladesh University of Professionals.</span>
+    <span class="mono">Built with HTML · CSS · Bootstrap</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const roles = [
+    "3rd Year ICE Student",
+    "Java & Python Developer",
+    "IEEE WIE Member",
+    "Aspiring Signal & Systems Engineer"
+  ];
+  const target = document.getElementById('typeTarget');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+  function typeLoop(){
+    const current = roles[roleIndex];
+    if(!deleting){
+      charIndex++;
+      target.textContent = current.slice(0, charIndex);
+      if(charIndex === current.length){ deleting = true; setTimeout(typeLoop, 1500); return; }
+    } else {
+      charIndex--;
+      target.textContent = current.slice(0, charIndex);
+      if(charIndex === 0){ deleting = false; roleIndex = (roleIndex + 1) % roles.length; }
+    }
+    setTimeout(typeLoop, deleting ? 35 : 55);
+  }
+  if(target){ typeLoop(); }
+
+  const navMenuEl = document.getElementById('navMenu');
+  const bsCollapse = new bootstrap.Collapse(navMenuEl, { toggle: false });
+  document.querySelectorAll('#navMenu .nav-link, #navMenu .btn-copper').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navMenuEl.classList.contains('show')){ bsCollapse.hide(); }
+    });
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sections.forEach(sec => observer.observe(sec));
+</script>
+</body>
+</html>
